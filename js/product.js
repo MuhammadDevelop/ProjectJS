@@ -2,8 +2,7 @@ let body = document.querySelector(".body");
 let sort = document.querySelector(".sort");
 let inp = document.getElementById("inp");
 let allData = []; // Barcha ma'lumotlarni saqlash
-let loader = document.querySelector(".loader__parent"); // Loader elementi
-
+let loader = document.querySelector(".loader__parent")
 // Ma'lumotlarni qisqartirish funksiyasi
 const truncate = (text, limit) => {
   if (text.length > limit) {
@@ -36,19 +35,20 @@ const renderData = (data) => {
 
 // API dan ma'lumotlarni olish funksiyasi
 async function getData() {
-  loader.classList.remove("loader_close"); // Loaderni ko'rsatish
-  loader.classList.add("loader__parent"); 
-
+   
   // Avval localStorage'dan ma'lumotlarni tekshiramiz
+  
   const storedData = localStorage.getItem('products');
   if (storedData) {
     allData = JSON.parse(storedData); // localStorage'dan saqlangan ma'lumotlarni olamiz
     renderData(allData); // Agar mavjud bo'lsa, ularni ekranga chiqaramiz
-    loader.classList.add("loader_close"); // Loaderni yashirish
   } else {
     const response = await fetch("https://fakestoreapi.com/products");
+    console.log(response);
     const data = await response.json();
-    loader.classList.add("loader_close"); // Loaderni yashirish
+     loader.classList.add("loader_close")
+     loader.classList.remove("loader__parent")
+
     allData = data; // Barcha ma'lumotlarni saqlash
     localStorage.setItem('products', JSON.stringify(data)); // Ma'lumotlarni localStorage ga saqlash
     renderData(allData); // Ma'lumotlarni chiqarish
