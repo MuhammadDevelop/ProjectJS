@@ -19,7 +19,9 @@ const renderData = (data) => {
     boxInner.innerHTML = `
     <div class="card">
       <div class="card-image">
-        <img src="${item.image}" alt="${item.title}">
+       <a href="../pages/Single.html?product-id=${item.id}">
+       <img src="${item.image}" alt="${item.title}">
+       </a>
       </div>
       <div class="card-content">
         <h1 class="card-title">${item.title}</h1>
